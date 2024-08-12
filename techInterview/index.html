@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Management System </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        h1 {
+            font-size: 28px;
+            margin: 20px 0;
+        }
+        h2 {
+            font-size: 22px;
+            margin: 20px 0 10px;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], 
+        input[type="date"], 
+        input[type="number"], 
+        input[type="time"], 
+        input[type="password"], 
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #f1f1f1;
+            color: #333;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>System Features <span><button style="background-color: aqua; color: black; border-radius: 5%; align-content: baseline;" ><a href="display_all_data.php">System Dashboard</a></button></span></h1>
+</header>
+
+<main>
+    <h2>Initialize Database and Tables</h2>
+    <form action="create_database.php" method="post">
+        <label for="dbname">Database Name:</label>
+        <input type="text" id="dbname" name="dbname" required>
+        <input type="submit" value="Create Database and Tables">
+    </form>
+
+    <h2>Create Batch</h2>
+    <form action="create_batch.php" method="post">
+        <label for="batch_name">Batch Name:</label>
+        <input type="text" id="batch_name" name="batch_name" required>
+
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" required>
+
+        <label for="capacity">Capacity:</label>
+        <input type="number" id="capacity" name="capacity" required>
+
+        <input type="submit" value="Create Batch">
+    </form>
+
+    <h2>Schedule Class</h2>
+    <form action="schedule_class.php" method="post">
+        <label for="batch_id">Batch ID:</label>
+        <input type="number" id="batch_id" name="batch_id" required>
+
+        <label for="class_date">Class Date:</label>
+        <input type="date" id="class_date" name="class_date" required>
+
+        <label for="start_time">Start Time:</label>
+        <input type="time" id="start_time" name="start_time" required>
+
+        <label for="end_time">End Time:</label>
+        <input type="time" id="end_time" name="end_time" required>
+
+        <input type="submit" value="Schedule Class">
+    </form>
+
+    <h2>Assign Instructor</h2>
+    <form action="assign_instructor.php" method="post">
+        <label for="class_schedule_id">Class Schedule ID:</label>
+        <input type="number" id="class_schedule_id" name="class_schedule_id" required>
+
+        <label for="instructor_id">Instructor ID:</label>
+        <input type="number" id="instructor_id" name="instructor_id" required>
+
+        <input type="submit" value="Assign Instructor">
+    </form>
+
+    <h2>Allocate Resources</h2>
+    <form action="allocate_resources.php" method="post">
+        <label for="class_schedule_id">Class Schedule ID:</label>
+        <input type="number" id="class_schedule_id" name="class_schedule_id" required>
+
+        <label for="resource_id">Resource ID:</label>
+        <input type="number" id="resource_id" name="resource_id" required>
+
+        <input type="submit" value="Allocate Resources">
+    </form>
+
+    <h2>Track Attendance</h2>
+    <form action="track_attendance.php" method="post">
+        <label for="class_schedule_id">Class Schedule ID:</label>
+        <input type="number" id="class_schedule_id" name="class_schedule_id" required>
+
+        <label for="student_id">Student ID:</label>
+        <input type="number" id="student_id" name="student_id" required>
+
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+        </select>
+
+        <input type="submit" value="Track Attendance">
+    </form>
+
+    <h2>Reporting & Analytics</h2>
+    <form action="generate_report.php" method="post">
+        <label for="report_type">Report Type:</label>
+        <select id="report_type" name="report_type">
+            <option value="batch">Batch Schedules</option>
+            <option value="attendance">Class Attendance</option>
+            <option value="resource">Resource Utilization</option>
+        </select>
+
+        <input type="submit" value="Generate Report">
+    </form>
+
+    <h2>User Roles & Permissions</h2>
+    <form action="manage_users.php" method="post" >
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value="admin">Administrator</option>
+            <option value="instructor">Instructor</option>
+            <option value="coordinator">Coordinator</option>
+        </select>
+
+        <input type="submit" value="Manage User">
+    </form>
+</main>
+
+<!-- <footer>
+    <p>&copy; 2024 Class Management System</p>
+</footer> -->
+
+</body>
+</html>
